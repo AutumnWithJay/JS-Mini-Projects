@@ -1,0 +1,101 @@
+body {
+  background-color: #2c3e50;
+  color: white;
+  font-family: "Rajdhani", sans-serif;
+}
+
+form {
+  text-align: center;
+}
+
+form > input {
+  text-align: center;
+  border: 0;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: #ffffff;
+  border-bottom: 2px dashed white;
+}
+
+form > input::placeholder {
+  color: #ffffff;
+}
+
+ul {
+  text-align: center;
+  padding-left: 0px;
+}
+
+li {
+  list-style-type: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+button {
+  margin-left: 1.1vmin;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.main-container {
+  margin-left: -100px;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+}
+
+.js-clock {
+  text-align: center;
+  font-size: 20pt;
+}
+
+.js-greetings {
+  text-align: center;
+  font-size: 20pt;
+  margin-top: 0px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.clicked {
+  color: #7f8c8d;
+}
+
+.form,
+.greetings {
+  display: none;
+}
+
+.showing {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: fadeIn 0.5s linear;
+}
+
+.js-weather {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

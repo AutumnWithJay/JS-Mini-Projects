@@ -1,0 +1,70 @@
+body {
+  width: 100vmin;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  color: rgba(255, 255, 255);
+  font-size: 12px;
+  font-weight: 800;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.container > i {
+  font-size: 10rem;
+  margin-bottom: 6vh;
+}
+
+.recorded {
+  color: red;
+}
+
+.game-intro-message {
+  height: 10vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5vh;
+  font-size: 1.1rem;
+}
+
+.game-intro-message > span:nth-child(1) {
+  font-size: 1.5rem;
+}
+
+.game-progress {
+  width: 40%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4em;
+}
+
+.game-progress__number {
+  width: 20%;
+  height: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(233, 233, 233);
+  margin-top: 3vh;
+  font-size: 0.9rem;
+}
+
+.game-progress__result {
+  width: 100%;
+  height: 4vh;
+  text-align: center;
+  margin-top: 2vh;
+  font-size: 1rem;
+}

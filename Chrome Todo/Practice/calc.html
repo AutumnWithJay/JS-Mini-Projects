@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const calculator = {
+            plus: function (a, b) {
+                return a + b;
+            },
+            minus: function (a, b) {
+                return a - b;
+            },
+            multiple: function (a, b) {
+                return a * b;
+            },
+            divide: function (a, b) {
+                return a / b;
+            },
+            pow: function (a, b) {
+                return a ** b;
+            }
+        }
+
+        const plus = calculator.plus(5, 5)
+        console.log(plus)
+
+        const minus = calculator.minus(10, 5)
+        console.log(minus)
+
+        const multiple = calculator.multiple(10, 5)
+        console.log(multiple)
+
+        const divide = calculator.divide(10, 5)
+        console.log(divide)
+
+        const pow = calculator.pow(10, 2)
+        console.log(pow)
+    </script>
+</body>
+
+</html>
