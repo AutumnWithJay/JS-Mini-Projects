@@ -77,15 +77,21 @@ function LoadUserList() {
   });
 }
 
-// User 객체 생성 후 매개변수 담아서 addUser 호출
+// User 객체에 기존 유저 혹은 신규 유저 정보 등록
 function createUserInfo() {
-  const name = dummyData[0].name;
+  let name;
   let money;
 
-  if (!dummyData[0].money || dummyData[0].money === 0) {
-    money = Math.floor(Math.random() * 100000);
+  if (dummyData.length === 0) {
+    window.alert('더이상 추가할 user가 없습니다.');
+    return;
   } else {
-    money = dummyData[0].money;
+    name = dummyData[0].name;
+    if (!dummyData[0].money || dummyData[0].money === 0) {
+      money = Math.floor(Math.random() * 100000);
+    } else {
+      money = dummyData[0].money;
+    }
   }
 
   const newUser = {
