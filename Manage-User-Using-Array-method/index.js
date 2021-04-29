@@ -1,17 +1,28 @@
 const userList = document.querySelector('.user-list');
+const addUserBtn = document.querySelector('.addUser');
+const removeUserBtn = document.querySelector('.removeUser');
+const addHundredBtn = document.querySelector('.addHundred');
+const addThousandsBtn = document.querySelector('.addThousands');
+const addTenThousandsBtn = document.querySelector('.addTenThousands');
+const sortUserBtn = document.querySelector('.sortUser');
+const sumMoneyBtn = document.querySelector('.sumMoney');
 
 let users = [
   {
     name: 'Jason',
+    money: 140203,
   },
   {
     name: 'Olson',
+    money: 492371,
   },
   {
     name: 'Jake',
+    money: 384720,
   },
   {
     name: 'Kasey',
+    money: 938470,
   },
 ];
 
@@ -29,7 +40,7 @@ const dummyData = [
     name: 'Sophia',
   },
   {
-    name: 'Liam',
+    name: 'Socrates',
   },
   {
     name: 'Charlotte',
@@ -54,7 +65,9 @@ const dummyData = [
   },
 ];
 
+// UserList 화면에 출력
 function LoadUserList() {
+  userList.innerHTML = `<h2>Person Money</h2>`;
   users.forEach((user) => {
     const div = document.createElement('div');
     div.classList.add('user');
@@ -63,6 +76,42 @@ function LoadUserList() {
   });
 }
 
+// User 추가 함수
+function addUser(user) {
+  users.push(user);
+  LoadUserList();
+}
+
+// User 객체 생성 후 매개변수 담아서 addUser 호출
+function createUserInfo() {
+  const name = dummyData[0].name;
+  let money;
+
+  if (!dummyData[0].money || dummyData[0].money === 0) {
+    money = Math.floor(Math.random() * 100000);
+  } else {
+    money = dummyData[0].money;
+  }
+
+  const newUser = {
+    name,
+    money,
+  };
+  dummyData.shift();
+  addUser(newUser);
+}
+
+// UserList에 가장 아래에 존재하는 User 삭제
+function removeLastUser() {
+  dummyData.push(users.pop());
+  LoadUserList();
+}
+
+// 버튼 이벤트리스트
+addUserBtn.addEventListener('click', createUserInfo);
+removeUserBtn.addEventListener('click', removeLastUser);
+
+// 초기 실행 코드
 function init() {
   LoadUserList();
 }
