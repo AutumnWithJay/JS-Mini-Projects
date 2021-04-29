@@ -107,9 +107,20 @@ function removeLastUser() {
   LoadUserList();
 }
 
+// User의 money가 매개변수만큼 증가
+function addMoneyToUser(money) {
+  users.forEach((user) => {
+    user.money += money;
+  });
+  LoadUserList();
+}
+
 // 버튼 이벤트리스트
 addUserBtn.addEventListener('click', createUserInfo);
 removeUserBtn.addEventListener('click', removeLastUser);
+addHundredBtn.addEventListener('click', () => addMoneyToUser(100));
+addThousandsBtn.addEventListener('click', () => addMoneyToUser(1000));
+addTenThousandsBtn.addEventListener('click', () => addMoneyToUser(10000));
 
 // 초기 실행 코드
 function init() {
