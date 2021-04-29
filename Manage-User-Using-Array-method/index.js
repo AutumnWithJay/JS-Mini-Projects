@@ -77,12 +77,6 @@ function LoadUserList() {
   });
 }
 
-// User 추가 함수
-function addUser(user) {
-  users.push(user);
-  LoadUserList();
-}
-
 // User 객체 생성 후 매개변수 담아서 addUser 호출
 function createUserInfo() {
   const name = dummyData[0].name;
@@ -98,8 +92,9 @@ function createUserInfo() {
     name,
     money,
   };
+  users.push(newUser);
   dummyData.shift();
-  addUser(newUser);
+  LoadUserList();
 }
 
 // UserList에 가장 아래에 존재하는 User 삭제
@@ -125,7 +120,7 @@ function sortUser() {
 // User의 전체 Money 합계
 function sumUserMoney() {
   const sum = users.reduce((acc, cur) => (acc += cur.money), 0);
-  totalMoney.innerHTML = `${sum}`;
+  totalMoney.textContent = `$${sum}`;
 }
 
 // 버튼 이벤트리스트
