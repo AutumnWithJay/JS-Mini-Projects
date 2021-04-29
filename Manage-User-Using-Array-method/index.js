@@ -6,23 +6,24 @@ const addThousandsBtn = document.querySelector('.addThousands');
 const addTenThousandsBtn = document.querySelector('.addTenThousands');
 const sortUserBtn = document.querySelector('.sortUser');
 const sumMoneyBtn = document.querySelector('.sumMoney');
+const totalMoney = document.querySelector('.sum-money__total');
 
 let users = [
   {
     name: 'Jason',
-    money: 140203,
+    money: 14020,
   },
   {
     name: 'Olson',
-    money: 492371,
+    money: 49237,
   },
   {
     name: 'Jake',
-    money: 384720,
+    money: 38470,
   },
   {
     name: 'Kasey',
-    money: 938470,
+    money: 93840,
   },
 ];
 
@@ -88,7 +89,7 @@ function createUserInfo() {
   let money;
 
   if (!dummyData[0].money || dummyData[0].money === 0) {
-    money = Math.floor(Math.random() * 1000000);
+    money = Math.floor(Math.random() * 100000);
   } else {
     money = dummyData[0].money;
   }
@@ -121,6 +122,12 @@ function sortUser() {
   LoadUserList();
 }
 
+// User의 전체 Money 합계
+function sumUserMoney() {
+  const sum = users.reduce((acc, cur) => (acc += cur.money), 0);
+  totalMoney.innerHTML = `${sum}`;
+}
+
 // 버튼 이벤트리스트
 addUserBtn.addEventListener('click', createUserInfo);
 removeUserBtn.addEventListener('click', removeLastUser);
@@ -128,6 +135,7 @@ addHundredBtn.addEventListener('click', () => addMoneyToUser(100));
 addThousandsBtn.addEventListener('click', () => addMoneyToUser(1000));
 addTenThousandsBtn.addEventListener('click', () => addMoneyToUser(10000));
 sortUserBtn.addEventListener('click', sortUser);
+sumMoneyBtn.addEventListener('click', sumUserMoney);
 
 // 초기 실행 코드
 function init() {
