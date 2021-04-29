@@ -88,7 +88,7 @@ function createUserInfo() {
   let money;
 
   if (!dummyData[0].money || dummyData[0].money === 0) {
-    money = Math.floor(Math.random() * 100000);
+    money = Math.floor(Math.random() * 1000000);
   } else {
     money = dummyData[0].money;
   }
@@ -115,12 +115,19 @@ function addMoneyToUser(money) {
   LoadUserList();
 }
 
+// Money 기준 내림차순 정렬
+function sortUser() {
+  users.sort((a, b) => b.money - a.money);
+  LoadUserList();
+}
+
 // 버튼 이벤트리스트
 addUserBtn.addEventListener('click', createUserInfo);
 removeUserBtn.addEventListener('click', removeLastUser);
 addHundredBtn.addEventListener('click', () => addMoneyToUser(100));
 addThousandsBtn.addEventListener('click', () => addMoneyToUser(1000));
 addTenThousandsBtn.addEventListener('click', () => addMoneyToUser(10000));
+sortUserBtn.addEventListener('click', sortUser);
 
 // 초기 실행 코드
 function init() {
