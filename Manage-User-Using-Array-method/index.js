@@ -68,7 +68,7 @@ const dummyData = [
 
 // UserList 화면에 출력
 function LoadUserList() {
-  userList.innerHTML = `<h2 class="user-list-title"><strong>Person</strong>Money</h2>`;
+  userList.innerHTML = `<h2 class="user-list-title"><strong>Person</strong>Wealth</h2>`;
   users.forEach((user) => {
     const div = document.createElement('div');
     div.classList.add('user');
