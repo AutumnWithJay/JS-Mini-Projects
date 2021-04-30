@@ -106,9 +106,13 @@ function createUserInfo() {
 
 // UserList에 가장 아래에 존재하는 User 삭제
 function removeLastUser() {
-  dummyData.push(users.pop());
-  LoadUserList();
-  sumUserMoney();
+  if (users.length !== 0) {
+    dummyData.push(users.pop());
+    LoadUserList();
+    sumUserMoney();
+  } else {
+    window.alert('더이상 삭제할 user가 없습니다.');
+  }
 }
 
 // User의 money가 매개변수만큼 증가
