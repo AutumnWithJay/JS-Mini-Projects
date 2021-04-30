@@ -101,12 +101,14 @@ function createUserInfo() {
   users.push(newUser);
   dummyData.shift();
   LoadUserList();
+  sumUserMoney();
 }
 
 // UserList에 가장 아래에 존재하는 User 삭제
 function removeLastUser() {
   dummyData.push(users.pop());
   LoadUserList();
+  sumUserMoney();
 }
 
 // User의 money가 매개변수만큼 증가
@@ -115,6 +117,7 @@ function addMoneyToUser(money) {
     user.money += money;
   });
   LoadUserList();
+  sumUserMoney();
 }
 
 // Money 기준 내림차순 정렬
