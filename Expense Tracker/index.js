@@ -9,6 +9,19 @@ const delBtn = document.querySelector('.del-button');
 
 let dataList = [];
 
+function removeData(e) {
+  const delBtn = e.target;
+  const list = delBtn.parentNode;
+
+  historyList.removeChild(list);
+  const deleteDataList = dataList.filter((data) => {
+    return data.idx !== parseInt(list.idx);
+  });
+
+  dataList = deleteDataList;
+  saveData();
+}
+
 // LocalStorage에서 데이터 로드
 function loadData() {
   const datas = localStorage.getItem('items');
@@ -34,11 +47,11 @@ function writeOnList(text, money) {
   const idx = dataList.length + 1;
   delBtn.innerText = '❌';
   delBtn.classList.add('del-button');
-  delBtn.addEventListener('click', (e) => removeData(e));
+  delBtn.addEventListener('click', removeData);
   span.innerText = `${text}, ${money}`;
   li.appendChild(span);
   li.appendChild(delBtn);
-  li.id = idx;
+  li.idx = idx;
   historyList.appendChild(li);
   const dataObj = {
     idx,
