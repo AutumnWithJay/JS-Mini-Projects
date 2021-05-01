@@ -26,6 +26,12 @@ body {
 
 .tracker-total__money {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker-total__money-balance {
+  padding-top: 1vmin;
 }
 
 .tracker-category {
@@ -33,18 +39,23 @@ body {
   height: 13vmin;
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 5vmin;
+  margin: 4vmin;
 }
 
 .tracker-category div {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .tracker-category div:first-child {
   border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tracker-category div > span {
+  margin-top: 0.4vmin;
 }
 
 .tracker-history {

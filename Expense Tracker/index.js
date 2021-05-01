@@ -1,6 +1,6 @@
-const remainMoney = document.querySelector('.tracker-total__money-title');
-const income = document.querySelector('.tracker-category__income-value');
-const expense = document.querySelector('.tracker-category__expense-value');
+const totalValue = document.querySelector('.tracker-total__money-balance');
+const incomeValue = document.querySelector('.tracker-category__income-value');
+const expenseValue = document.querySelector('.tracker-category__expense-value');
 const historyList = document.querySelector('.tracker-history__list');
 const inputText = document.querySelector('.input-text');
 const inputAmount = document.querySelector('.input-amount');
@@ -8,6 +8,17 @@ const addBtn = document.querySelector('.add-transaction');
 const delBtn = document.querySelector('.del-button');
 
 let dataList = [];
+
+// 수입, 지출, 현재 잔액 표시
+function displayAmount(income, expense, total) {
+  totalValue.textContent = `₩${total > 0 ? -total : total}`;
+  incomeValue.textContent = `₩${income}`;
+  expenseValue.textContent = `₩${expense.toString().substring(1)}`;
+
+  total < 0 ? totalValue.classList.add('red') : totalValue.classList.add('blue');
+  incomeValue.classList.add('blue');
+  expenseValue.classList.add('red');
+}
 
 // Localstorage 내의 수입, 지출 총합 계산
 function calculateAmount() {
@@ -26,7 +37,7 @@ function calculateAmount() {
   });
 
   total = income + expense;
-  console.log(income, expense, total);
+  displayAmount(income, expense, total);
 }
 
 // list에서 데이터 삭제 후 localStroage의 해당 데이터도 삭제
@@ -66,7 +77,7 @@ function writeOnList(text, money) {
   const delBtn = document.createElement('button');
   const span = document.createElement('span');
   const idx = dataList.length + 1;
-  delBtn.innerText = '❌';
+  delBtn.textContent = '❌';
   delBtn.classList.add('del-button');
   delBtn.addEventListener('click', removeData);
 
@@ -101,4 +112,9 @@ addBtn.addEventListener('click', () => {
   inputAmount.value = '';
 });
 
-loadData();
+function init() {
+  loadData();
+  calculateAmount();
+}
+
+init();
