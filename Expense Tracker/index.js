@@ -9,6 +9,18 @@ const delBtn = document.querySelector('.del-button');
 
 let dataList = [];
 
+// LocalStorage에서 데이터 로드
+function loadData() {
+  const datas = localStorage.getItem('items');
+
+  if (datas !== null) {
+    const parsedData = JSON.parse(datas);
+    parsedData.forEach((data) => {
+      writeOnList(data.text, data.money);
+    });
+  }
+}
+
 // LocalStorage에 데이터 저장
 function saveData() {
   localStorage.setItem('items', JSON.stringify(dataList));
@@ -45,3 +57,5 @@ addBtn.addEventListener('click', () => {
   inputText.value = '';
   inputAmount.value = '';
 });
+
+loadData();
