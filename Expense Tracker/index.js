@@ -9,11 +9,13 @@ const delBtn = document.querySelector('.del-button');
 
 let dataList = [];
 
+// Localstorage 내의 수입, 지출 총합 계산
 function calculateAmount() {
   const datas = localStorage.getItem('items');
   const parsedData = JSON.parse(datas);
   let income = 0;
   let expense = 0;
+  let total = 0;
 
   parsedData.forEach((data) => {
     if (data.money > 0) {
@@ -23,9 +25,11 @@ function calculateAmount() {
     }
   });
 
-  console.log(income, expense);
+  total = income + expense;
+  console.log(income, expense, total);
 }
 
+// list에서 데이터 삭제 후 localStroage의 해당 데이터도 삭제
 function removeData(e) {
   const delBtn = e.target;
   const list = delBtn.parentNode;
