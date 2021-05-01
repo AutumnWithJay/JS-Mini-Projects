@@ -84,6 +84,14 @@ body {
   cursor: pointer;
 }
 
+.red {
+  color: rgb(234, 77, 77);
+}
+
+.blue {
+  color: rgb(11, 23, 244);
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 20%;

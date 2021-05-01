@@ -9,6 +9,23 @@ const delBtn = document.querySelector('.del-button');
 
 let dataList = [];
 
+function calculateAmount() {
+  const datas = localStorage.getItem('items');
+  const parsedData = JSON.parse(datas);
+  let income = 0;
+  let expense = 0;
+
+  parsedData.forEach((data) => {
+    if (data.money > 0) {
+      income += parseInt(data.money);
+    } else {
+      expense += parseInt(data.money);
+    }
+  });
+
+  console.log(income, expense);
+}
+
 function removeData(e) {
   const delBtn = e.target;
   const list = delBtn.parentNode;
@@ -48,7 +65,16 @@ function writeOnList(text, money) {
   delBtn.innerText = '❌';
   delBtn.classList.add('del-button');
   delBtn.addEventListener('click', removeData);
-  span.innerText = `${text}, ${money}`;
+
+  if (money.substring(0, 1) === '-') {
+    span.classList.add('red');
+  } else {
+    span.classList.add('blue');
+  }
+
+  span.innerHTML = `<strong>${text}</strong> ₩${
+    money.substring(0, 1) === '-' ? money.substring(1) : money
+  }`;
   li.appendChild(span);
   li.appendChild(delBtn);
   li.idx = idx;
@@ -65,7 +91,7 @@ function writeOnList(text, money) {
 // 항목 추가 이벤트
 addBtn.addEventListener('click', () => {
   const text = inputText.value;
-  const money = Number(inputAmount.value);
+  const money = inputAmount.value;
   writeOnList(text, money);
   inputText.value = '';
   inputAmount.value = '';
