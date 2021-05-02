@@ -11,9 +11,9 @@ let dataList = [];
 
 // 수입, 지출, 현재 잔액 표시
 function displayAmount(income, expense, total) {
-  totalValue.textContent = `₩${total > 0 ? -total : total}`;
+  totalValue.textContent = `₩${total > 0 ? total : -total}`;
   incomeValue.textContent = `₩${income}`;
-  expenseValue.textContent = `₩${expense.toString().substring(1)}`;
+  expenseValue.textContent = `₩${expense === 0 ? expense : expense.toString().substring(1)}`;
 
   total < 0 ? totalValue.classList.add('red') : totalValue.classList.add('blue');
   incomeValue.classList.add('blue');
@@ -71,6 +71,7 @@ function loadData() {
 // LocalStorage에 데이터 저장
 function saveData() {
   localStorage.setItem('items', JSON.stringify(dataList));
+  calculateAmount();
 }
 
 // DataList에 Data 추가
