@@ -6,11 +6,6 @@ body {
   justify-content: center;
 }
 
-.del-button {
-  all: unset;
-  font-size: 1px;
-}
-
 .container {
   width: 30%;
   display: flex;
@@ -39,7 +34,8 @@ body {
   height: 13vmin;
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 4vmin;
+  margin-top: 2vmin;
+  margin-bottom: 3vmin;
 }
 
 .tracker-category div {
@@ -74,8 +70,19 @@ body {
   margin-top: 1vmin;
 }
 
+.tracker-history__list > li span {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.del-button {
+  all: unset;
+  font-size: 1px;
+}
+
 .tracker-transaction {
   width: 100%;
+  margin-top: 3vmin;
 }
 
 .tracker-transaction__text,

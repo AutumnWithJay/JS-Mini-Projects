@@ -22,22 +22,24 @@ function displayAmount(income, expense, total) {
 
 // Localstorage 내의 수입, 지출 총합 계산
 function calculateAmount() {
-  const datas = localStorage.getItem('items');
-  const parsedData = JSON.parse(datas);
-  let income = 0;
-  let expense = 0;
-  let total = 0;
+  if (dataList !== null) {
+    const datas = localStorage.getItem('items');
+    const parsedData = JSON.parse(datas);
+    let income = 0;
+    let expense = 0;
+    let total = 0;
 
-  parsedData.forEach((data) => {
-    if (data.money > 0) {
-      income += parseInt(data.money);
-    } else {
-      expense += parseInt(data.money);
-    }
-  });
+    parsedData.forEach((data) => {
+      if (data.money > 0) {
+        income += parseInt(data.money);
+      } else {
+        expense += parseInt(data.money);
+      }
+    });
 
-  total = income + expense;
-  displayAmount(income, expense, total);
+    total = income + expense;
+    displayAmount(income, expense, total);
+  }
 }
 
 // list에서 데이터 삭제 후 localStroage의 해당 데이터도 삭제
@@ -103,15 +105,30 @@ function writeOnList(text, money) {
   saveData();
 }
 
-// 항목 추가 이벤트
-addBtn.addEventListener('click', () => {
+function getDataFromInput() {
   const text = inputText.value;
   const money = inputAmount.value;
-  writeOnList(text, money);
-  inputText.value = '';
-  inputAmount.value = '';
+  if (text !== '' && money !== '') {
+    writeOnList(text, money);
+    inputText.value = '';
+    inputAmount.value = '';
+  } else if (text === '') {
+    window.alert('내역을 입력해주세요');
+  } else {
+    window.alert('금액을 입력해주세요');
+  }
+}
+
+// 항목 추가 이벤트
+addBtn.addEventListener('click', getDataFromInput);
+
+document.addEventListener('keypress', (e) => {
+  if (e.code === 'Enter') {
+    getDataFromInput();
+  }
 });
 
+// 초기 실행
 function init() {
   loadData();
   calculateAmount();
