@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vmax;
+}
+
+main {
+  width: 40vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-container {
+  display: flex;
+}
+
+.current-time,
+.current-location {
+  margin: 0 auto;
+}
+
+.information-container {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  margin-top: 7vh;
+}
+
+.fas,
+.far {
+  font-size: 4vmax;
+  margin-bottom: 2vmin;
+}
+
+.weather__temperture {
+  font-size: 1.4vmax;
+}

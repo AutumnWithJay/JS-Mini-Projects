@@ -2,8 +2,9 @@
 const currentTime = document.querySelector('.current-time');
 const locationName = document.querySelector('.current-location');
 // Weather Variable
-const weatherIcon = document.querySelector('.weather-icon');
-const temperture = document.querySelector('.weather-temperture');
+const weatherIcon = document.querySelector('.weather__icon');
+const temperture = document.querySelector('.weather__temperture');
+const weatherTitle = document.querySelector('.weather__title');
 // Air Pollution Variable
 const fineDustIcon = document.querySelector('.fine-dust__icon');
 const fineDustTitle = document.querySelector('.fine-dust__title');
@@ -26,42 +27,6 @@ const iconObj = {
   bad: '<i class="fas fa-tired"></i>',
 };
 
-const validateIcon = (kind, info1, info2) => {
-  const { high, low, half, great, soso, bad } = iconObj;
-
-  if (kind === 'weather') {
-    if (info1 > 26) {
-      weatherIcon.innerHTML = high;
-    } else if (info1 > 13) {
-      weatherIcon.innerHTML = half;
-    } else {
-      weatherIcon.innerHTML = low;
-    }
-    weatherIcon.style.color = 'red';
-  } else {
-    if (info1 > 100) {
-      fineDustIcon.innerHTML = bad;
-      fineDustIcon.style.color = 'black';
-    } else if (info1 > 50) {
-      fineDustIcon.innerHTML = soso;
-      fineDustIcon.style.color = 'green';
-    } else {
-      fineDustIcon.innerHTML = great;
-      fineDustIcon.style.color = 'blue';
-    }
-    if (info2 > 100) {
-      ultraFineDustIcon.innerHTML = bad;
-      ultraFineDustIcon.style.color = 'black';
-    } else if (info2 > 50) {
-      ultraFineDustIcon.innerHTML = soso;
-      ultraFineDustIcon.style.color = 'green';
-    } else {
-      ultraFineDustIcon.innerHTML = great;
-      ultraFineDustIcon.style.color = 'blue';
-    }
-  }
-};
-
 const getAirpollution = (lat, lon) => {
   const URL = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   fetch(URL)
@@ -70,7 +35,9 @@ const getAirpollution = (lat, lon) => {
       const { pm2_5, pm10 } = res.list[0].components;
 
       fineDustValue.textContent = `${pm2_5}`;
+      fineDustTitle.textContent = 'PM2.5';
       ultraFineDustValue.textContent = `${pm10}`;
+      ultraFineDustTitle.textContent = 'PM10';
       validateIcon('pollution', pm2_5, pm10);
       isAirLoading = false;
     });
@@ -88,6 +55,7 @@ const getWeatherCondition = (lat, lon) => {
 
       locationName.textContent = `${name}`;
       temperture.textContent = `${Math.ceil(temp - 273.99)}℃`;
+      weatherTitle.textContent = 'Temp';
       validateIcon('weather', Math.ceil(temp - 273.99));
       isWeatherLoading = false;
     });
@@ -102,6 +70,42 @@ const displayTime = () => {
   currentTime.textContent = `
   ${hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}
   `;
+};
+
+const validateIcon = (kind, info1, info2) => {
+  const { high, low, half, great, soso, bad } = iconObj;
+
+  if (kind === 'weather') {
+    if (info1 > 26) {
+      weatherIcon.innerHTML = high;
+    } else if (info1 > 13) {
+      weatherIcon.innerHTML = half;
+    } else {
+      weatherIcon.innerHTML = low;
+    }
+    weatherIcon.style.color = 'red';
+  } else {
+    if (info1 > 80) {
+      fineDustIcon.innerHTML = bad;
+      fineDustIcon.style.color = 'red';
+    } else if (info1 > 30) {
+      fineDustIcon.innerHTML = soso;
+      fineDustIcon.style.color = 'green';
+    } else {
+      fineDustIcon.innerHTML = great;
+      fineDustIcon.style.color = 'blue';
+    }
+    if (info2 > 35) {
+      ultraFineDustIcon.innerHTML = bad;
+      ultraFineDustIcon.style.color = 'red';
+    } else if (info2 > 15) {
+      ultraFineDustIcon.innerHTML = soso;
+      ultraFineDustIcon.style.color = 'green';
+    } else {
+      ultraFineDustIcon.innerHTML = great;
+      ultraFineDustIcon.style.color = 'blue';
+    }
+  }
 };
 
 const getLocation = (pos) => {
