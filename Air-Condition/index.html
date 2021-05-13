@@ -5,22 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <title>Air Condition</title>
 </head>
 
 <body>
     <main>
-        <section>
-            <h2>오늘의 대기 상태</h2>
-            <p class="location"></p>
+        <section class="current-container">
+            <p class="current-time"></p>
+            <p class="current-location"></p>
         </section>
-        <section>
-            <h3>날씨</h3>
-            <p class="weather"></p>
+        <section class="weather-container">
+            <p class="weather-icon"></p>
+            <p class="weather-temperture"></p>
         </section>
-        <section>
-            <h3>미세먼지</h3>
-            <p class="pollution"></p>
+        <section class="pollution-container">
+            <article class="fine-dust">
+                <p class="fine-dust__icon"></p>
+                <h3 class="fine-dust__title"></h3>
+                <p class="fine-dust__value"></p>
+            </article>
+            <article class="ultra-fine-dust">
+                <p class="ultra-fine-dust__icon"></p>
+                <h3 class="ultra-fine-dust__title"></h3>
+                <p class="ultra-fine-dust__value"></p>
+            </article>
         </section>
     </main>
     <script src="index.js"></script>
